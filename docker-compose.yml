@@ -1,0 +1,26 @@
+version: "3.9" # optional since v1.27.0
+services:
+  web:
+    stdin_open: true
+    tty: true 
+    restart: always
+    build: ./node-app
+    ports:
+      - 8000:8000
+    environment:
+      - DB_USER=sa
+      - DB_PWD=Webcat123.
+      - DB_NAME=tempdb
+      - DB_SERVER=mssqlserver
+    depends_on:
+      - mssqlserver
+  mssqlserver:
+    image: mcr.microsoft.com/mssql/server
+    ports:
+      - 1433:1433
+    environment:
+      - ACCEPT_EULA=Y
+
+      - MSSQL_SA_PASSWORD=Webcat123.
+
+      - MSSQL_PID=Developer
