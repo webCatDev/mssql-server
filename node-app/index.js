@@ -28,7 +28,7 @@ app.get('/', async () => {
 
     await sql.query`CREATE TABLE IF NOT EXISTS people (id int auto increment, name text, age int, primary key(id));`;
     await sql.query`insert into people (name, age) values ("webcat", 999);`;
-    const result = await sql.query`select * from people where id = ${value}`;
+    const result = await sql.query`select * from people`;
     console.dir(result);
   } catch (err) {
     console.log(err)
